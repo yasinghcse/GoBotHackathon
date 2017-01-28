@@ -2,17 +2,17 @@ package hackathon.gobot.resources;
 
 /**
  * This class is used to store the data dictionary , search the word, get suggestion(auto completion)
- * ranking of URLs and find the correct word in trie and inverted index
+ * ranking of textLines and find the correct word in trie and inverted index
  * 
  * Functions Used are:
- * 1. 	updateWordOccurrence(int num, String url) --- update the occurence of a word in a url in inverted index
- * 2.	insertWord(String word, String url)       --- insert a new word in Trie and update its occurence in inverted index
- * 3.	getAllInvertedIndexList					  --- Print the link of all urls and its occurence in inverted index
+ * 1. 	updateWordOccurrence(int num, String textLine) --- update the occurence of a word in a textLine in inverted index
+ * 2.	insertWord(String word, String textLine)       --- insert a new word in Trie and update its occurence in inverted index
+ * 3.	getAllInvertedIndexList					  --- Print the link of all textLines and its occurence in inverted index
  * 4.	search(String word)						  --- Search a word in Trie
- * 5.	remove(String word, String url)			  --- Remove a word in Trie
+ * 5.	remove(String word, String textLine)			  --- Remove a word in Trie
  * 6.	findEditDistance(String s1, String s2)	  --- Find the distance(Edit,Delete/Insert) between two words
- * 7.	loadData(Collection e, String url)		  --- Load the data into dictonary
- * 8.	getTopUrls(String word)					  --- Get the top URL having most occurenence of the input word
+ * 7.	loadData(Collection e, String textLine)		  --- Load the data into dictonary
+ * 8.	getToptextLines(String word)					  --- Get the top textLine having most occurenence of the input word
  * 9.	guessWord(String prefix)				  --- Get the list of all words in the dictonary starting from the input prefix
  * 10.	findCorrection(String word)				  --- Find the most correct word which is one distance away from the input word
  * 
@@ -21,7 +21,11 @@ package hackathon.gobot.resources;
 
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.TreeMap;
 
+import hackathon.gobot.pdf.CouncilAgenda;
+import hackathon.gobot.pdf.CouncilAgendaManager;
+import hackathon.gobot.pdf.PDFTextNode;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -33,7 +37,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 //Class to implement Trie
-class Tries implements Serializable  {
+class Tries implements Serializable {
 	char data;
 	int count;
 	boolean isEnd;
@@ -64,13 +68,9 @@ class Tries implements Serializable  {
 
 /**
  * This class has the function to implement the inverted index using Trie and
- * perform below functions:
- *  1. Creating Dictonary 
- *  2. Searching Dictonary 
- *  3. Deletion 
- *  4. Prediction of words 
- *  5. Finding the correct word 
- *  6. Ranking of the URLs
+ * perform below functions: 1. Creating Dictonary 2. Searching Dictonary 3.
+ * Deletion 4. Prediction of words 5. Finding the correct word 6. Ranking of the
+ * textLines
  * 
  * @author yadwindersingh
  *
@@ -80,53 +80,48 @@ public class InvertedIndex implements Serializable {
 	private static final boolean String = false;
 	public static int currWordNumber;
 	public static Tries root;
-	public static HashMap<Integer, HashMap<String, Integer>> invertedIdxArray;
+	public static String pdfName;
+	// public static HashMap<Integer, HashMap<String, Integer>>
+	// invertedIdxArray;
+	public static TreeMap<Integer, TreeMap<Integer, String>> invertedIdxArray;
 
 	public InvertedIndex() {
 		root = new Tries(' ');
-		invertedIdxArray = new HashMap<Integer, HashMap<java.lang.String, Integer>>();
+		// invertedIdxArray = new HashMap<Integer, HashMap<java.lang.String,
+		// Integer>>();
+		invertedIdxArray = new TreeMap<Integer, TreeMap<Integer, java.lang.String>>();
 		currWordNumber = 1;
 	}
 
 	// *************************************
 	// update word occurrence in HashMap
 	// *************************************
-	public void updateWordOccurrence(int num, String url) {
+	public void updateWordOccurrence(int num, String textLine) {
 
 		// if the doc is already present
 		if (invertedIdxArray.get(num) != null) {
-
-			// check if the url was also captured earlier
-			if (invertedIdxArray.get(num).get(url) != null) {
-
-				// update the occurrence of the word by 1
-				invertedIdxArray.get(num).put(url, invertedIdxArray.get(num).get(url) + 1);
-			} else {
-
-				// word is found for the first time in this url
-				invertedIdxArray.get(num).put(url, 1);
-			}
+			invertedIdxArray.get(num).put(invertedIdxArray.lastKey() + 1, textLine);
 		} else {
 
 			// if word is captured for first time
-			HashMap<String, Integer> urlMap = new HashMap<java.lang.String, Integer>();
-			urlMap.put(url, 1);
-			invertedIdxArray.put(num, urlMap);
+			TreeMap<Integer, String> textLineMap = new TreeMap<Integer, String>();
+			textLineMap.put(1, textLine);
+			invertedIdxArray.put(num, textLineMap);
 		}
 	}
 
 	// *************************************
 	// insert a word in the Trie
 	// *************************************
-	public void insertWord(String word, String url) {
+	public void insertWord(String word, String textLine) {
 
 		// if word found, update its occurrence
 		int wordNum = search(word);
-		
+
 		if (wordNum != -1) {
-			//System.out.println("Adding new word in Trie" + word );
-			//System.out.println("Word doc n"+ wordNum);
-			updateWordOccurrence(wordNum, url);
+			// System.out.println("Adding new word in Trie" + word );
+			// System.out.println("Word doc n"+ wordNum);
+			updateWordOccurrence(wordNum, textLine);
 			return;
 		}
 
@@ -146,9 +141,9 @@ public class InvertedIndex implements Serializable {
 		// Update the invertedIndex list
 		curr.isEnd = true;
 		curr.wordNumber = currWordNumber;
-		updateWordOccurrence(curr.wordNumber, url);
-		//System.out.println("Adding new word in Trie" + word );
-		//System.out.println("Word doc n"+ currWordNumber);
+		updateWordOccurrence(curr.wordNumber, textLine);
+		// System.out.println("Adding new word in Trie" + word );
+		// System.out.println("Word doc n"+ currWordNumber);
 		currWordNumber++;
 	}
 
@@ -158,7 +153,7 @@ public class InvertedIndex implements Serializable {
 	public void getAllInvertedIndexList() {
 
 		System.out.println("Printing InvertedIndex List");
-		for (Map.Entry<Integer, HashMap<String, Integer>> e : invertedIdxArray.entrySet()) {
+		for (Map.Entry<Integer, TreeMap<Integer, String>> e : invertedIdxArray.entrySet()) {
 			System.out.println(e);
 		}
 	}
@@ -175,6 +170,7 @@ public class InvertedIndex implements Serializable {
 				curr = curr.getChild(c);
 			}
 		}
+		
 		if (curr.isEnd) {
 			return curr.wordNumber;
 		}
@@ -185,7 +181,7 @@ public class InvertedIndex implements Serializable {
 	// *************************************
 	// removing the word from Trie
 	// *************************************
-	public void remove(String word, String url) {
+	public void remove(String word, String textLine) {
 
 		// check if the word is present
 		int wordNum = search(word);
@@ -195,7 +191,7 @@ public class InvertedIndex implements Serializable {
 		}
 
 		// handling the invertedIndex
-		invertedIdxArray.get(wordNum).remove(url);
+		invertedIdxArray.get(wordNum).remove(textLine);
 
 		// handing the Trie
 		Tries curr = root;
@@ -242,80 +238,12 @@ public class InvertedIndex implements Serializable {
 	// *****************************************
 	// function to be exposed to load the data
 	// *****************************************
-	public void loadData(Collection e, String url) {
+	public void loadData(Collection e, String textLine) {
 
 		// process each element and pass it to the trie
 		Iterator<String> itr = e.iterator();
 		while (itr.hasNext()) {
-			insertWord(itr.next(), url);
-		}
-	}
-
-	// *****************************************
-	// function to be exposed to load the data
-	// *****************************************
-//	public void updatedloadData(Collection<WebCrawlerNode> e) {
-//
-//			// process each element and pass it to the trie
-//			Iterator<WebCrawlerNode> itr = e.iterator();
-//			WebCrawlerNode webCrawledNodes= null;
-//			while (itr.hasNext()) {
-//				//System.out.println("reading Url ");
-//				webCrawledNodes = itr.next();
-//				
-//				Collection<String> eachWord = webCrawledNodes.getTextContentsTokens();
-//				Iterator<String> itr1 = eachWord.iterator();
-//				while(itr1.hasNext()){
-//					//System.out.println("reading Url " + webCrawledNodes.getNodeBaseUrl());
-//					String input= itr1.next();
-//					//System.out.println(input);
-//					insertWord(input,webCrawledNodes.getNodeBaseUrl());
-//				}
-//			}
-//		}
-
-	// *************************************
-	// function to return a String array of
-	// top urls for the matching word
-	// *************************************
-	public String[] getTopUrls(String word) {
-		int docNum = search(word);
-		System.out.println("Word is present at " + docNum);
-		if (docNum != -1) {
-
-			// local variables
-			int topk = 5;
-			int i = 0;
-
-			// Get all the url for the matching word
-			HashMap<String, Integer> foundUrl = invertedIdxArray.get(docNum);
-
-			// prepare the array for the QuickSelect with word frequency
-			final int[] frequency = new int[foundUrl.size()];
-			for (final int value : foundUrl.values()) {
-				frequency[i++] = value;
-			}
-
-			// Calling QuickSelect to get the 10th largest occurrence
-			QuickSelectAlgo obj = new QuickSelectAlgo();
-			final int kthLargestFreq = obj.findKthLargest(frequency, topk);
-
-			// Populating the local array with the URL's having frequency
-			// greater than the k-1th largest element
-			final String[] topKElements = new String[topk];
-			i = 0;
-			for (final java.util.Map.Entry<String, Integer> entry : foundUrl.entrySet()) {
-				if (entry.getValue().intValue() >= kthLargestFreq) {
-					topKElements[i++] = entry.getKey();
-					if (i == topk) {
-						break;
-					}
-				}
-			}
-			return topKElements;
-		} else {
-			System.out.println("No word found");
-			return null;
+			insertWord(itr.next(), textLine);
 		}
 	}
 
@@ -326,7 +254,7 @@ public class InvertedIndex implements Serializable {
 		Tries curr = root;
 		int wordLength = 0;
 		String predictedWords[] = null;
-		
+
 		// get the count of number of words available
 		for (int i = 0; i < prefix.length(); i++) {
 			if (curr.getChild(prefix.charAt(i)) == null) {
@@ -334,7 +262,7 @@ public class InvertedIndex implements Serializable {
 				return null;
 			} else if (i == (prefix.length() - 1)) {
 				curr = curr.getChild(prefix.charAt(i));
-				System.out.println("Char reading = "+ prefix.charAt(i));
+				System.out.println("Char reading = " + prefix.charAt(i));
 				System.out.println("Curr value =" + curr.data + "===Curr count= " + curr.count);
 				wordLength = curr.count;
 			} else {
@@ -371,15 +299,14 @@ public class InvertedIndex implements Serializable {
 					counter++;
 				}
 				for (int j = 0; j < e.count; j++) {
-					 System.out.println(
-					 "e.data " + e.data + "========boolena" + e.isEnd +
-					 "=========e.counter " + e.count);
-					 
-					 //fixing to get the corrcet word
-					if (e.isEnd && j == (e.count-1)) {
+					System.out.println(
+							"e.data " + e.data + "========boolena" + e.isEnd + "=========e.counter " + e.count);
+
+					// fixing to get the corrcet word
+					if (e.isEnd && j == (e.count - 1)) {
 						wordCompleted.put(counter, "done");
 					}
-					 System.out.println("counter " + counter);
+					System.out.println("counter " + counter);
 					predictedWords[counter] = predictedWords[counter] + e.data;
 					counter++;
 				}
@@ -434,107 +361,40 @@ public class InvertedIndex implements Serializable {
 	}
 
 	// *****************************************
+	// function to be exposed to load the data
+	// *****************************************
+	public void updatedloadData(String pdfname, String word, String text) {
+		this.pdfName = pdfname;
+		insertWord(word, text);
+	}
+
+	// *****************************************
 	// Main function to run the implementation
 	// *****************************************
 	public static void main(String[] arr) {
 		InvertedIndex t = new InvertedIndex();
-		System.out.println(t.findEditDistance("been", "bee"));
+		CouncilAgenda councilAgenda = CouncilAgendaManager.getNextCouncilAgenda();
+		System.out.println(councilAgenda);
+		councilAgenda.getPDFFileLink();
+
+		// Now start to load the file remotely
+		Collection<PDFTextNode> textNodes;
+		try {
+			textNodes = CouncilAgendaManager.getPDFTextNodesForAgenda(councilAgenda);
+			for (Iterator<PDFTextNode> iterator = textNodes.iterator(); iterator.hasNext();) {
+				PDFTextNode pdfTextNode = (PDFTextNode) iterator.next();
+				t.updatedloadData(councilAgenda.getPDFFileLink(), pdfTextNode.getKeyWord(), pdfTextNode.getTextChunk());
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		ArrayList<String> e = new ArrayList<String>();
-		String url1 = "www.test.com";
-		String url2 = "www.test2.com";
-		String url3 = "www.test3.com";
-		String url4 = "www.test4.com";
-		String url5 = "www.test5.com";
-		String url6 = "www.test6.com";
-		e.add("been");
-		e.add("been1");
-		e.add("hello2");
-		e.add("hello3");
-		e.add("hello4");
-		e.add("hello5");
-		e.add("hello6");
-		e.add("hello7");
-		e.add("hello8");
-		e.add("hello9");
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hen");
-		e.add("hens");
-		e.add("hell");
-		t.loadData(e, url1);
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hello10");
-		t.loadData(e, url2);
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hello10");
-		t.loadData(e, url3);
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hello10");
-		t.loadData(e, url4);
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hello11");
-		t.loadData(e, url5);
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hello10");
-		e.add("hello10");
-		t.loadData(e, url6);
-
-		// testing the inverted index and rankings
-		System.out.println("Element hello doc no = " + t.search("hello10"));
-		 System.out.println(invertedIdxArray);
-		for(String s: t.getTopUrls("hen")){
-		  System.out.println(s);
-		 }
-
-		// testing the guessing of the words
-		 //t.guessWord("h");
-
-		// testing the correction of words
-		//t.findCorrection("hello101");
-
-//		HashMap<Integer,Integer> t = new HashMap<>();
-//		t.put(10,10);
-//		 SerializeData obj1= new SerializeData();
-//		 try {
-//		 //obj1.writeData(t);
-//		 obj1.readData();
-//		 } catch (IOException e1) {
-//		 // TODO Auto-generated catch block
-//		 e1.printStackTrace();
-//		 } catch (Exception e1) {
-//		 // TODO Auto-generated catch block
-//		 e1.printStackTrace();
-//		 }
-
+		System.out.println("===========");
+		t.getAllInvertedIndexList();
+		System.out.println("Search the word");
+		System.out.println("Word found at " + t.search("Councillor"));
+		System.out.println(t.invertedIdxArray.get(t.search("Councillor")));		
+		System.out.println("===========");
 	}
-
 }

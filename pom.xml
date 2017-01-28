@@ -11,11 +11,11 @@
 	</parent>
 
 	<groupId>net.wasdev.wlp.sample</groupId>
-	<artifactId>Windsorite</artifactId>
+	<artifactId>GoBot</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>Windsorite</name>
+	<name>GoBot</name>
 	<url>https://wasdev.github.io</url>
 
 	<licenses>

@@ -1,14 +1,3 @@
-<%@ page import="wasdev.windsor.resources.*"%>
-<%
-		UserProfile user1 = null;
-		if (session != null) {
-			user1 = (UserProfile) session.getAttribute("UserProfile");
-		}
-		if (user1 == null) {
-			RequestDispatcher reqDispatcher = getServletConfig().getServletContext().getRequestDispatcher("/login.jsp");
-			reqDispatcher.forward(request, response);
-		} 
-%>
 
 <!DOCTYPE html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
@@ -26,7 +15,7 @@
 
 	<!-- Page Title
 	================================================== -->
-	<title>|| NEW WINDSORITE ||</title>
+	<title>|| Go Bot ||</title>
 
 	<!-- CSS
 	================================================== -->
@@ -75,74 +64,9 @@
 			
 				<!-- Logo -->
 				<div class="header-logo-wrap">
-					<div class = "" style="font-size: 26px; margin-top: 21px; border: 2px solid #000; padding: 8px 14px;" >|| New Windsorite ||</div>
+					<div class = "" style="font-size: 26px; margin-top: 21px; border: 2px solid #000; padding: 8px 14px;" >|| GoBot ||</div>
 				</div>
-				
-				<!-- Mobile nav bars -->
-				<div class="mobile-nav">
-					<i class="fa fa-bars"></i>
-				</div>
-				
-				<!-- Main Menu -->
-				<div class="nav-wrapper large-nav callme">
-					<ul class="clearlist">
-
-						<!-- Menu With Sub -->
-						<%
-							UserProfile user = null;
-							if (session != null) {
-								user = (UserProfile) session.getAttribute("UserProfile");
-							}
-							if (user == null) {
-						%>
-						<li><a href="home.jsp" class="active">Home</a></li>
-						<li><a href="about.jsp" class="active">About</a></li>
-						<li><a href="contact.jsp" class="active">Contact</a></li>
-						<li><a href="login.jsp" class="active">Login</a></li>
-						<li><a href="register.jsp" class="active">Register</a></li>
-						<%
-							} else {
-						%>
-						<li><a href="home.jsp" class="active">Home</a></li>
-						<li><a href="about.jsp" class="active">About</a></li>
-						<li><a href="contact.jsp" class="active">Contact</a></li>
-						<li>
-							<a href="recommend.jsp" class="active">Recommendations</a>							
-						</li>
-						<li>
-							<a href="watsonchat.jsp" class="active">Talk To Me</a>							
-						</li>
-						<li><a href="/Windsorite/Controller?act=logout"
-							class="active">Log Out</a></li>
-						<li><a href="profile.jsp" class="active">Profile</a></li>
-						<li><a href="register.jsp" class="active">Register</a></li>
-						<%
-							}
-						%>
-
-						<!-- Divider -->
-						<li><a>&nbsp;</a></li>
-						<!-- End Divider -->
-						
-						<!-- Languages -->
-						<li>
-							<a href="#" class="menu-down"><i class="fa fa-twitter"></i></a>													
-							
-						</li>
-						<!-- End Languages -->						
-						
-						<!-- Address -->
-						<li class="hide_menu_item">
-							<a href="#" class="menu-down hs1"><i class="fa fa-map-marker"></i></a>
-							<ul class="nav-sub sp-top-bottom40 to-left">								
-								<li><a class="text-center" href="/wincity/login.html">Get Started</a><strong>Get your Up to date buzz about the City of Windsor</strong></li>														
-							</ul>
-						</li>
-						<!-- End Address -->
-						
-					 </ul>
-				</div>
-				<!-- End Main Menu -->					
+								
 
 			</div>
 		</nav>

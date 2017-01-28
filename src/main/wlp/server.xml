@@ -10,6 +10,6 @@
         <tcpOptions soReuseAddr="true"/>
     </httpEndpoint>
 
-    <application name="Windsorite" context-root="/" location="${appLocation}" type="war"/>
+    <application name="GoBot" context-root="/" location="${appLocation}" type="war"/>
 
 </server>

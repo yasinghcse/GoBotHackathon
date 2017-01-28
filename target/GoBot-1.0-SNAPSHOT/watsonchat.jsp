@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]>
@@ -16,7 +15,7 @@
 
 	<!-- Page Title
 	================================================== -->
-	<title>|| Go BOT ||</title>
+	<title>|| Go Bot ||</title>
 
 	<!-- CSS
 	================================================== -->
@@ -65,14 +64,8 @@
 			
 				<!-- Logo -->
 				<div class="header-logo-wrap">
-					<div class = "" style="font-size: 26px; margin-top: 21px; border: 2px solid #000; padding: 8px 14px;" >|| Go Bot!!! ||</div>
+					<div class = "" style="font-size: 26px; margin-top: 21px; border: 2px solid #000; padding: 8px 14px;" >|| GoBot ||</div>
 				</div>
-				
-				<!-- Mobile nav bars -->
-				<div class="mobile-nav">
-					<i class="fa fa-bars"></i>
-				</div>
-				
 								
 
 			</div>

@@ -5,7 +5,7 @@
  * @author yadwindersingh
  */
 
-package wasdev.windsor.servlet;
+package hackathon.gobot.servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;

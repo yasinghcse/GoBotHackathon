@@ -1,0 +1,12 @@
+---
+applications:
+- path: target/Windsorite.war
+  memory: 512M
+  instances: 1
+  domain: mybluemix.net
+  name: NewWindsorite
+  host: NewWindsorite
+  disk_quota: 1024M
+  services:
+  - Cloudant NoSQL DB-oa
+  - Conversation-bb

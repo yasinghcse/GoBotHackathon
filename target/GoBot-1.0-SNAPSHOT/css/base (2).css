@@ -1,0 +1,271 @@
+/*
+* Skeleton V1.2
+* Copyright 2011, Dave Gamache
+* www.getskeleton.com
+* Free to use under the MIT license.
+* http://www.opensource.org/licenses/mit-license.php
+* 6/20/2012
+*/
+
+
+/* Table of Content
+==================================================
+	#Reset & Basics
+	#Basic Styles
+	#Site Styles
+	#Typography
+	#Links
+	#Lists
+	#Images
+	#Buttons
+	#Forms
+	#Misc */
+
+
+/* #Reset & Basics (Inspired by E. Meyers)
+================================================== */
+	html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, select{
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font-size: 100%;
+		font: inherit;
+		vertical-align: baseline; }
+	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+		display: block; }
+	body {
+		line-height: 1; }
+	ol, ul {
+		list-style: none; }
+	blockquote, q {
+		quotes: none; }
+	blockquote:before, blockquote:after,
+	q:before, q:after {
+		content: '';
+		content: none; }
+	table {
+		border-collapse: collapse;
+		border-spacing: 0; }
+
+/* #Basic Styles
+================================================== */
+body {
+	font-family: 'Open Sans', sans-serif;
+	font-weight:400;
+	font-size: 15px;
+	line-height:25px;
+	color:#212121;
+	overflow-x:hidden;
+	-webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
+	-webkit-text-size-adjust: 100%;
+	-webkit-backface-visibility: hidden; /* Chrome, Safari, Opera */
+ }
+  @media only screen and (max-width:480px){
+	body{
+		font-size: 14px;
+		line-height:22px;
+	}
+ }
+ html {
+		overflow-x:hidden; 
+	height:100%;
+}
+
+::selection {
+	background: rgba(100,100,100,.2); /* Safari */
+	}
+::-moz-selection {
+	background: rgba(100,100,100,.2); /* Firefox */
+}
+
+/* #Typography
+================================================== */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lato', sans-serif;
+	text-transform: uppercase;
+	font-weight: 900;
+}
+	h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { font-weight: inherit; }
+	h1 { font-size: 40px; line-height:44px;}
+	h2 { font-size: 34px; line-height:38px;}
+	h3 { font-size: 28px; line-height: 32px;}
+	h4 { font-size: 24px; line-height: 28px;}
+	h5 { font-size: 20px; line-height: 26px;}
+	h6 { font-size: 16px; line-height: 20px;}
+
+	.fw100{font-weight:100 !important;}
+	.fw200{font-weight:200 !important;}
+	.fw300{font-weight:300 !important;}
+	.fw400{font-weight:400 !important;}
+	.fw500{font-weight:500 !important;}
+	.fw600{font-weight:600 !important;}
+	.fw700{font-weight:700 !important;}
+	.fw800{font-weight:800 !important;}
+	.fw900{font-weight:900 !important;}
+	
+	.lp0{letter-spacing:0px !important;}
+	.lp1{letter-spacing:1px !important;}
+	.lp2{letter-spacing:2px !important;}
+	.lp3{letter-spacing:3px !important;}
+	.lp4{letter-spacing:4px !important;}
+	.lp5{letter-spacing:5px !important;}
+	.lp6{letter-spacing:6px !important;}
+	.lp7{letter-spacing:7px !important;}
+	.lp8{letter-spacing:8px !important;}
+	.lp9{letter-spacing:9px !important;}
+	.lp10{letter-spacing:10px !important;}
+	.lp11{letter-spacing:11px !important;}
+	.lp12{letter-spacing:12px !important;}
+	.lp13{letter-spacing:13px !important;}
+	.lp14{letter-spacing:14px !important;}
+	.lp15{letter-spacing:15px !important;}
+	
+	h1.light,h2.light,h3.light,h4.light,h5.light,h6.light{font-weight:300;}
+	h1.light2,h2.light2,h3.light2,h4.light2,h5.light2,h6.light2{font-weight:400;}
+	h1.lowercase,h2.lowercase,h3.lowercase,h4.lowercase,h5.lowercase,h6.lowercase{text-transform: lowercase;}
+	
+	em { font-style: italic; }
+	strong { font-weight: 900;}
+	small { font-size: 80%; }
+	
+	@media only screen and (max-width: 992px) {
+		h1{font-size: 34px;line-height: 38px;}
+		h2 {font-size: 28px;line-height: 32px;}
+		h3 {font-size: 22px;line-height: 26px;}
+		h4 {font-size: 18px;line-height: 22px;}
+		h5 {font-size: 16px;line-height: 20px;}
+		
+		.lp6{letter-spacing:5px !important;}
+		.lp7{letter-spacing:6px !important;}
+		.lp8{letter-spacing:7px !important;}
+		.lp9{letter-spacing:8px !important;}
+		.lp10{letter-spacing:9px !important;}
+		.lp11{letter-spacing:10px !important;}
+		.lp12{letter-spacing:10px !important;}
+		.lp13{letter-spacing:10px !important;}
+		.lp14{letter-spacing:11px !important;}
+		.lp15{letter-spacing:12px !important;}
+	}
+	@media only screen and (max-width: 768px) {
+		h1{font-size: 30px;line-height: 34px;}
+		h2 {font-size: 24px;line-height: 28px;}
+		h3 {font-size: 20px;line-height: 24px;}
+		h4 {font-size: 18px;line-height: 22px;}
+		h5 {font-size: 16px;line-height: 22px;}
+		h6{font-size: 14px;line-height: 18px;}
+		
+		.lp6{letter-spacing:4px !important;}
+		.lp7{letter-spacing:5px !important;}
+		.lp8{letter-spacing:6px !important;}
+		.lp9{letter-spacing:6px !important;}
+		.lp10{letter-spacing:7px !important;}
+		.lp11{letter-spacing:8px !important;}
+		.lp12{letter-spacing:8px !important;}
+		.lp13{letter-spacing:8px !important;}
+		.lp14{letter-spacing:9px !important;}
+		.lp15{letter-spacing:10px !important;}
+	}
+	@media only screen and (max-width: 480px) {
+		h1{font-size: 26px;line-height: 30px;}
+		h2 {font-size: 20px;line-height: 24px;}
+		h3 {font-size: 18px;line-height: 22px;}
+		h4 {font-size: 16px;line-height: 20px;}
+		h5 {font-size: 14px;line-height: 18px;}
+
+		.lp6{letter-spacing:3px !important;}
+		.lp7{letter-spacing:4px !important;}
+		.lp8{letter-spacing:5px !important;}
+		.lp9{letter-spacing:5px !important;}
+		.lp10{letter-spacing:6px !important;}
+		.lp11{letter-spacing:6px !important;}
+		.lp12{letter-spacing:6px !important;}
+		.lp13{letter-spacing:6px !important;}
+		.lp14{letter-spacing:7px !important;}
+		.lp15{letter-spacing:8px !important;}	
+	}
+
+/*	Blockquotes  */
+	blockquote, blockquote p {color: #777;margin-bottom:20px; }
+	blockquote {padding: 9px 20px 0 19px; }
+	blockquote cite { display: block; font-size: 12px; color: #555; }
+	blockquote cite:before { content: "\2014 \0020"; }
+	blockquote cite a, blockquote cite a:visited, blockquote cite a:visited { color: #555; }
+	blockquote footer {font-size: 11px;font-weight: 400;letter-spacing: 2px; text-transform: uppercase;}
+	hr { border: solid #323a3d; border-width: 1px 0 0; clear: both; height: 0; position:relative;}
+
+
+/* #Links
+================================================== */
+	a, a:visited { text-decoration: none;color:#222; }
+	a:hover, a:focus { }
+	p a, p a:visited { line-height: inherit; text-decoration: none;}
+	a:focus{
+	outline:none;
+	}
+
+/* #Lists
+================================================== */
+	ul, ol { }
+	ul { list-style: none outside; }
+	ol { list-style: decimal; }
+	ol, ul.square, ul.circle, ul.disc { margin-left: 30px; }
+	ul.square { list-style: square outside; }
+	ul.circle { list-style: circle outside; }
+	ul.disc { list-style: disc outside; }
+	li { line-height: 18px; }
+	ul.large li { line-height: 21px; }
+	li p { line-height: 21px; }
+/* #Buttons
+================================================== */
+
+	.button,
+	button,
+	input[type="submit"],
+	input[type="reset"],
+	input[type="button"] {
+	margin-top:10px;
+	border:none;
+	  color: #dfdfdf;
+	  display: inline-block;
+	  font-size: 16px;
+	  cursor: pointer;
+	  line-height: normal;
+	  padding: 15px 25px;
+	-webkit-transition : all 0.3s ease-out;
+	-moz-transition : all 0.3s ease-out;
+	-o-transition :all 0.3s ease-out;
+	transition : all 0.3s ease-out; 
+	width:100%}
+
+	.button:hover,
+	button:hover,
+	input[type="submit"]:hover,
+	input[type="reset"]:hover,
+	input[type="button"]:hover {	
+	  
+	}
+
+	.button:active,
+	button:active,
+	input[type="submit"]:active,
+	input[type="reset"]:active,
+	input[type="button"]:active {	
+	  color: #e74c3c;}
+
+	.button.full-width,
+	button.full-width,
+	input[type="submit"].full-width,
+	input[type="reset"].full-width,
+	input[type="button"].full-width {
+		width: 100%;
+		padding-left: 0;
+		padding-right: 0;
+		text-align: center; }
+
+	/* Fix for odd Mozilla border & padding issues */
+	button::-moz-focus-inner,
+	input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+	}
+

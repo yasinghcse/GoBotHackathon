@@ -1,0 +1,138 @@
+.main {
+	height: 100%;
+	-webkit-perspective: 1200px;
+	perspective: 1200px;
+}
+
+.morph-container {
+	width: 100%;
+	height: 100%;
+	padding: 1em;
+	position: relative;
+	display: block;
+	-webkit-justify-content: center;
+	-moz-justify-content: center;
+	justify-content: center;
+	-webkit-box-direction: normal;
+	-webkit-box-orient: vertical;
+	-webkit-flex-direction: column;
+	-moz-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+}
+
+
+/* Morph Shape */
+
+.morph-shape {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index:0;
+}
+
+.morph-shape svg {
+	position: absolute;
+	margin: 0;
+	pointer-events: none;
+}
+
+/* Stack */
+
+.stack ul li {
+	position: absolute;
+	width: 100%;
+	opacity: 0;
+	transform:none !important;
+}
+
+.stack__images li {
+	top: 0;width: 850px;
+	z-index: 1;
+	-webkit-transform: translate3d(0,0,-180px);
+	transform: translate3d(0,0,-180px);
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	cursor: grabbing;
+}
+
+.stack__images li:hover {
+	cursor: url(../images/cursor_vulcan.png), auto;
+}
+
+.stack__images li:active {
+	cursor: -webkit-grabbing;
+	cursor: grabbing;
+}
+
+.stack__images li.animate {
+	-webkit-transition: all 0.8s ease-out;
+	transition: all 0.8s ease-out;
+}
+
+.stack__images li.move-back {
+	-webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.470, 1); /* older webkit */
+	-webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.470, 1.515);
+	transition-timing-function: cubic-bezier(0.175, 0.885, 0.470, 1.515);
+}
+
+.stack__next {
+	border: none;
+	background: none;
+	display: block;
+	padding: 0;
+	overflow: hidden;
+	width: 36px;
+	height: 36px;
+	margin: 150px auto 0;
+	font-size: 24px;
+	position: relative;
+	cursor: pointer;
+	color: #fff;
+}
+
+.stack__next:hover {
+	color: #212121;
+	background: #fff;
+}
+
+.stack__next:focus {
+	outline: none;
+}
+
+.stack__next span {
+	position: absolute;
+	top: 200%;
+}
+
+
+/* Animations */
+.morph-shape svg {
+	fill: #000;
+	-webkit-transition: fill 0.1s ease-out;
+	transition: fill 0.1s ease-out;
+}
+
+.navigate-next .morph-shape svg {
+	fill: #212121;
+	-webkit-transition-duration: 0.45s;
+	transition-duration: 0.45s;
+}
+
+/*draggable Elastic effect-2 */
+.morph-container {
+	-webkit-transition: -webkit-transform 0.1s cubic-bezier(0.6, 0, 0.5, 1);
+	transition: transform 0.1s cubic-bezier(0.6, 0, 0.5, 1);
+}
+
+.demo-1.navigate-next .morph-container {
+	-webkit-transition-duration: 0.45s;
+	transition-duration: 0.45s;
+	-webkit-transform: translate3d(0, 0, -600px);
+	transform: translate3d(0, 0, -600px);
+}
+
+
+

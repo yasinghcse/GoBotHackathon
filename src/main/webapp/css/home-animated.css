@@ -1,0 +1,39 @@
+/* Header */
+.large-header {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+	background-size: cover;
+	background-position: center center;
+	z-index: 1;
+}
+.demo-1 .large-header {
+	background-color: #fff;
+}
+.demo-2 .large-header {
+	background-color: #fff;
+}
+.demo-3 .large-header {
+	background-color: #fff;
+}
+.main-title {
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	top: 50%;
+	left: 50%;
+	width: 80%;
+	transform: translateX(-50%) translateY(-50%);
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-o-transform: translateX(-50%) translateY(-50%);
+}
+.main-title h1{
+	font-weight:300;
+	margin-bottom:10px;
+}
+.main-title span{
+	font-weight:900;
+}
+.main-title p{margin-bottom:40px;}

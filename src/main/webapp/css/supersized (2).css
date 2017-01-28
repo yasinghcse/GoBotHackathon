@@ -1,0 +1,118 @@
+/*
+
+	Supersized - Fullscreen Slideshow jQuery Plugin
+	Version : 3.2.6
+	Site	: www.buildinternet.com/project/supersized
+	
+	Author	: Sam Dunn
+	Company : One Mighty Roar (www.onemightyroar.com)
+	License : MIT License / GPL License
+	
+*/
+
+	*{
+		margin:0;
+		padding:0;
+	}
+	#supersized-loader { position:absolute; top:50%; left:50%; z-index:0; width:60px; height:60px; margin:-30px 0 0 -30px; text-indent:-999em; background:url(../images/ajax-loader.gif) no-repeat center center;}
+	
+	#supersized {  display:block; position:fixed; left:0; top:0; overflow:hidden; z-index:-999; height:100%; width:100%; }
+		#supersized img { width:auto; height:auto; position:relative; display:none; outline:none; border:none;width:100%;max-width:none;margin:0;padding:0; }
+			#supersized.speed img { -ms-interpolation-mode:nearest-neighbor; image-rendering: -moz-crisp-edges; }	/*Speed*/
+			#supersized.quality img { -ms-interpolation-mode:bicubic; image-rendering: optimizeQuality; }			/*Quality*/
+		
+		#supersized li { display:block; list-style:none; z-index:-30; position:fixed; overflow:hidden; top:0; left:0; width:100%; height:100%; background:#111; }
+		#supersized a { width:100%; height:100%; display:block; }
+			#supersized li.prevslide { z-index:-20; }
+			#supersized li.activeslide { z-index:-10; }
+			#supersized li.image-loading { background:#111 url(../images/ajax-loader) no-repeat center center; width:100%; height:100%; }
+				#supersized li.image-loading img{ visibility:hidden; }
+			#supersized li.prevslide img, #supersized li.activeslide img{ display:inline; }
+
+#slideshow-info {
+    display: block;
+    position: relative;
+    text-align: center;
+	width:100%;
+	margin:0 auto;
+}
+#slideshow-nav {
+    clear: both;
+    margin: 0 auto;
+    width: 118px;
+}
+#slideshow-nav #slideshow-next {
+    cursor: pointer;
+    float: right;
+}
+#slideshow-nav #slide-number {
+    float: right;
+    font-size: 96px;
+    line-height: 96px;
+    margin: 0 5px;
+}
+#slideshow-nav #slideshow-prev {
+    cursor: pointer;
+    float: right;
+}
+#slide-caption {
+    clear: both;
+    color: #fff;
+    display: block;
+    letter-spacing: 20px;
+	text-align:center;
+}
+@media only screen and (max-width: 992px) {
+		#slide-caption {letter-spacing: 16px;}
+	}
+	@media only screen and (max-width: 768px) {
+		#slide-caption {letter-spacing: 10px;}
+	}
+	@media only screen and (max-width: 480px) {
+		#slide-caption {letter-spacing: 6px;}
+	}
+.arrow-up-click img {
+    float: none !important;
+    height: auto !important;
+    margin: 0 auto !important;
+    width: 25px !important;
+}
+@media (max-width: 1200px) {
+	
+	
+	#slideshow-info {
+    display: block;
+    font-size: 48px;
+    position: relative;
+    text-align: right;
+	width:auto;
+	margin:0 auto;
+	padding: 0 40px;
+	}
+}
+
+.arrow {
+    bottom: 20px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    z-index: 3;
+}
+.arrow .arrow-block {
+    margin: 0 auto;
+    transition: all 0.2s ease-in 0s;
+    width: 88px;
+}
+.arrow .arrow-block:hover {
+    transform: scale(1.2);
+}
+.arrow .arrow-block a:link {
+    display: block;
+    text-decoration: none;
+}
+.arrow img {
+    float: none;
+    height: 30px;
+    margin: 0 auto;
+    width: 13px;
+}

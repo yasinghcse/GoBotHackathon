@@ -1,0 +1,93 @@
+.header {
+    position: relative;
+    text-align: center;
+}
+.title-header {
+    left: 50%;
+    padding: 0 15px;
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-o-transform: translateX(-50%) translateY(-50%);
+	-ms-transform: translateX(-50%) translateY(-50%);
+    width: 80%;
+    z-index: 2;
+}
+.owl-goDown-out .title-header h1,.owl-goDown-out .title-header h3,.owl-goDown-in .title-header h1,.owl-goDown-in .title-header h3{
+	transition: all 0.2s linear 0s;-webkit-transition: all 0.3s linear 0s;-moz-transition: all 0.3s linear 0s;-o-transition: all 0.2s linear 0s;
+}
+.owl-goDown-out .title-header h1,.owl-goDown-out .title-header h3{transform:translateY(130px);}
+
+.title-header h1:after {
+    background-color: #ececec;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 3px;
+    left: 50%;
+    margin-left: -15px;
+    position: absolute;
+    width: 30px;
+}
+.cs-slider .owl-carousel {
+    z-index: 0;
+	cursor:default;
+}
+.cs-slider-item {
+    position: relative;
+    text-align: center;
+}
+.cs-slider .cs-slider-item {
+    background-attachment: scroll;
+    background-position: center center;
+    background-repeat: no-repeat;
+    max-width: 100%;
+    width: 100%;
+    background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+}
+.cs-slider .slider-item-background img {
+    display: none;
+    height: auto;
+    width: 100%;
+}
+.cs-slider-control {
+    bottom: 7px;
+    position: absolute;
+    right: 7px;
+    z-index: 1;
+}
+.cs-slider-control.slide-nav {position: static;}
+.cs-slider-control.slide-nav .nav-control {
+    background-color: transparent;
+    border: 3px solid #fff;    
+    height: 41px;
+    margin-top: -20.5px;
+    position: absolute;
+    top: 50%;
+    width: 41px;
+	z-index:99;
+	color: #fff;
+	cursor:pointer;
+    font-size: 22px;
+    line-height: 35px;
+	transition:all 0.27s cubic-bezier(0, 0, 0.58, 1) 0s;
+	-webkit-transition:all 0.27s cubic-bezier(0, 0, 0.58, 1) 0s;
+	-moz-transition:all 0.27s cubic-bezier(0, 0, 0.58, 1) 0s;
+	-o-transition:all 0.27s cubic-bezier(0, 0, 0.58, 1) 0s;
+}
+.cs-slider-control.slide-nav .nav-preview {left: 75px;}
+.cs-slider-control.slide-nav .nav-next {right: 75px;}
+.cs-slider-control.slide-nav .nav-control:hover {background-color:#fff;color:#212121;}
+ 
+ @media only screen and (max-width: 768px) {
+	.cs-slider-control.slide-nav .nav-preview {left: -3px;}
+	.cs-slider-control.slide-nav .nav-next {right: -3px;}
+ }
+ @media only screen and (max-width: 480px) {
+	.cs-slider-control{display:none;}
+	.title-header {width:95%}
+ }

@@ -1,4 +1,11 @@
 hackathon/gobot/resources/QuickSelectAlgo.class
+hackathon/gobot/pdf/PDFTextNode.class
+hackathon/gobot/pdf/CouncilAgenda.class
+hackathon/gobot/resources/Tries.class
+hackathon/gobot/resources/TwitterApi.class
+hackathon/gobot/pdf/CouncilAgendaManager.class
+hackathon/gobot/pdf/PDFParser.class
 hackathon/gobot/resources/InvertedIndex.class
 hackathon/gobot/servlet/WatsonInteraction.class
-hackathon/gobot/resources/Tries.class
+hackathon/gobot/pdf/CouncilPDFCrawler.class
+hackathon/gobot/pdf/PDFFileHandler.class

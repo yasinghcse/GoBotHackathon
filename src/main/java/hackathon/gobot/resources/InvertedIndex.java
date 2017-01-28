@@ -438,82 +438,82 @@ public class InvertedIndex implements Serializable {
 	// *****************************************
 	public static void main(String[] arr) {
 		InvertedIndex t = new InvertedIndex();
-//		System.out.println(t.findEditDistance("been", "bee"));
-//		
-//		ArrayList<String> e = new ArrayList<String>();
-//		String url1 = "www.test.com";
-//		String url2 = "www.test2.com";
-//		String url3 = "www.test3.com";
-//		String url4 = "www.test4.com";
-//		String url5 = "www.test5.com";
-//		String url6 = "www.test6.com";
-//		e.add("been");
-//		e.add("been1");
-//		e.add("hello2");
-//		e.add("hello3");
-//		e.add("hello4");
-//		e.add("hello5");
-//		e.add("hello6");
-//		e.add("hello7");
-//		e.add("hello8");
-//		e.add("hello9");
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hen");
-//		e.add("hens");
-//		e.add("hell");
-//		t.loadData(e, url1);
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hello10");
-//		t.loadData(e, url2);
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hello10");
-//		t.loadData(e, url3);
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hello10");
-//		t.loadData(e, url4);
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hello11");
-//		t.loadData(e, url5);
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hello10");
-//		e.add("hello10");
-//		t.loadData(e, url6);
-//
-//		// testing the inverted index and rankings
-//		System.out.println("Element hello doc no = " + t.search("hello10"));
-//		 System.out.println(invertedIdxArray);
-//		for(String s: t.getTopUrls("hen")){
-//		  System.out.println(s);
-//		 }
+		System.out.println(t.findEditDistance("been", "bee"));
+		
+		ArrayList<String> e = new ArrayList<String>();
+		String url1 = "www.test.com";
+		String url2 = "www.test2.com";
+		String url3 = "www.test3.com";
+		String url4 = "www.test4.com";
+		String url5 = "www.test5.com";
+		String url6 = "www.test6.com";
+		e.add("been");
+		e.add("been1");
+		e.add("hello2");
+		e.add("hello3");
+		e.add("hello4");
+		e.add("hello5");
+		e.add("hello6");
+		e.add("hello7");
+		e.add("hello8");
+		e.add("hello9");
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hen");
+		e.add("hens");
+		e.add("hell");
+		t.loadData(e, url1);
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hello10");
+		t.loadData(e, url2);
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hello10");
+		t.loadData(e, url3);
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hello10");
+		t.loadData(e, url4);
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hello11");
+		t.loadData(e, url5);
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hello10");
+		e.add("hello10");
+		t.loadData(e, url6);
+
+		// testing the inverted index and rankings
+		System.out.println("Element hello doc no = " + t.search("hello10"));
+		 System.out.println(invertedIdxArray);
+		for(String s: t.getTopUrls("hen")){
+		  System.out.println(s);
+		 }
 
 		// testing the guessing of the words
 		 //t.guessWord("h");

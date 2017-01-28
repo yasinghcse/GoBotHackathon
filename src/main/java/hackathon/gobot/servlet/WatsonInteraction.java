@@ -24,6 +24,8 @@ import com.ibm.watson.developer_cloud.conversation.v1.ConversationService;
 import com.ibm.watson.developer_cloud.conversation.v1.model.MessageRequest;
 import com.ibm.watson.developer_cloud.conversation.v1.model.MessageResponse;
 
+import hackathon.gobot.resources.TwitterApi;
+
 
 /**
  * Servlet implementation class WatsonInteraction
@@ -33,6 +35,8 @@ public class WatsonInteraction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static ConversationService service = null;
 	private static MessageResponse lastConversation = null;
+	private static TwitterApi twitterApiCall = new  TwitterApi();
+	private static String newStatus=null; 
 
 	public WatsonInteraction() {
 		super();
@@ -67,6 +71,13 @@ public class WatsonInteraction extends HttpServlet {
 			System.out.println(response1.getText());
 			ArrayList<String> test = (ArrayList<String>) response1.getText();
 			System.out.println("test" + test.get(0));
+			
+			//test if there is a need to call twitter api for update
+			if(test.get(0).substring(0, 10).equalsIgnoreCase("Tweet Done")){
+				newStatus="GoBot is updating the status now";
+				twitterApiCall.updateTwitterStatus(newStatus);
+			}
+			
 
 			// preparing the response back to the user
 			for (int i = 0; i < response1.getText().size(); i++) {

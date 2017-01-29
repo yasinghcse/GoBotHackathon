@@ -364,8 +364,14 @@ public class InvertedIndex implements Serializable {
 	// function to be exposed to load the data
 	// *****************************************
 	public void updatedloadData(String pdfname, String word, String text) {
-		this.pdfName = pdfname;
-		insertWord(word, text);
+		try{
+			//ShortenUrlApi.shortenUrl(pdfname);
+			this.pdfName = pdfname;
+			insertWord(word, text);
+		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+		}
 	}
 
 	// *****************************************

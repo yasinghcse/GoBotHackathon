@@ -14,15 +14,13 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONArray;
+import org.codehaus.jettison.json.JSONException;
 
 import com.ibm.watson.developer_cloud.conversation.v1.ConversationService;
 import com.ibm.watson.developer_cloud.conversation.v1.model.MessageRequest;
@@ -32,6 +30,7 @@ import hackathon.gobot.pdf.CouncilAgenda;
 import hackathon.gobot.pdf.CouncilAgendaManager;
 import hackathon.gobot.pdf.PDFTextNode;
 import hackathon.gobot.resources.InvertedIndex;
+import hackathon.gobot.resources.ShortenUrlApi;
 import hackathon.gobot.resources.TwitterApi;
 
 /**
@@ -61,12 +60,17 @@ public class WatsonInteraction extends HttpServlet {
 		Collection<PDFTextNode> textNodes;
 		try {
 			textNodes = CouncilAgendaManager.getPDFTextNodesForAgenda(councilAgenda);
+			String url = ShortenUrlApi.shortenUrl(councilAgenda.getPDFFileLink());
+			System.out.println("Minified code for Url is =" + url);
 			for (Iterator<PDFTextNode> iterator = textNodes.iterator(); iterator.hasNext();) {
 				PDFTextNode pdfTextNode = (PDFTextNode) iterator.next();
-				t.updatedloadData(councilAgenda.getPDFFileLink(), pdfTextNode.getKeyWord(), pdfTextNode.getTextChunk());
+				t.updatedloadData(url, pdfTextNode.getKeyWord().toLowerCase(), pdfTextNode.getTextChunk());
 			}
 
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -114,7 +118,7 @@ public class WatsonInteraction extends HttpServlet {
 				System.out.println("Printing Tweet for " + msg[Integer.parseInt(request.getParameter("question")) - 1]);
 
 				newStatus = msg[Integer.parseInt(request.getParameter("question")) - 1].substring(0, 20)
-						+ " PDF Link : https://goo.gl/HkjdiF";
+						+ System.getProperty("line.separator")+ t.pdfName;
 				System.out.println("Printing Tweet = " + newStatus);
 				twitterApiCall.updateTwitterStatus(newStatus);
 			}
@@ -128,7 +132,7 @@ public class WatsonInteraction extends HttpServlet {
 				System.out.println("Searching for question" + request.getParameter("question"));
 				try {
 					TreeMap<Integer, String> localTree = t.invertedIdxArray
-							.get(t.search(request.getParameter("question")));
+							.get(t.search(request.getParameter("question").toLowerCase()));
 					int count = 1;
 					for (Map.Entry<Integer, String> entry : localTree.entrySet()) {
 						String value = entry.getValue();
@@ -148,7 +152,7 @@ public class WatsonInteraction extends HttpServlet {
 					try {
 						// String[] guessword =
 						// t.guessWord(request.getParameter("question"));
-						String[] guessword = t.findCorrection(request.getParameter("question"));
+						String[] guessword = t.findCorrection((request.getParameter("question")).toLowerCase());
 						if (guessword.length > 0) {
 							System.out.println("Suggestion found");
 							response.getWriter().print("Here are few Suggestion you can try: <br>");

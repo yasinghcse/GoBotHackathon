@@ -33,6 +33,8 @@ import hackathon.gobot.resources.InvertedIndex;
 import hackathon.gobot.resources.ShortenUrlApi;
 import hackathon.gobot.resources.TwitterApi;
 
+
+
 /**
  * Servlet implementation class WatsonInteraction
  */
@@ -115,12 +117,23 @@ public class WatsonInteraction extends HttpServlet {
 			// test if there is a need to call twitter api for update
 			if (test.get(0).substring(0, 10).equalsIgnoreCase("Tweet Done")) {
 				System.out.println("Input number is " + request.getParameter("question"));
-				System.out.println("Printing Tweet for " + msg[Integer.parseInt(request.getParameter("question")) - 1]);
+				if (Integer.parseInt(request.getParameter("question")) <= 5 &&
+					!msg[Integer.parseInt(request.getParameter("question")) - 1].isEmpty())
+				{
+					System.out.println(
+							"Printing Tweet for " + msg[Integer.parseInt(request.getParameter("question")) - 1]);
 
-				newStatus = msg[Integer.parseInt(request.getParameter("question")) - 1].substring(0, 20)
-						+ System.getProperty("line.separator")+ t.pdfName;
-				System.out.println("Printing Tweet = " + newStatus);
-				twitterApiCall.updateTwitterStatus(newStatus);
+					newStatus = msg[Integer.parseInt(request.getParameter("question")) - 1]
+							+ System.getProperty("line.separator") + t.pdfName;
+					System.out.println("Printing Tweet = " + newStatus);
+					twitterApiCall.updateTwitterStatus(newStatus);
+				} else {
+					response.getWriter().print("Incorrect value passed"+ "<br>");
+					response.getWriter().print("No Tweet Updated"+ "<br>");
+					response.getWriter().print("Please retry again"+ "<br>");
+					System.out.println("incorrect value passed");
+					return;
+				}
 			}
 
 			// preparing the response back to the user
@@ -128,12 +141,18 @@ public class WatsonInteraction extends HttpServlet {
 				response.getWriter().print(response1.getText().get(i) + "<br>");
 				System.out.println("***********" + response1.getText().get(i) + "****************");
 			}
-			if (test.get(0).equalsIgnoreCase("Let me search for you")) {
+
+			System.out.println("**====***" + test.get(0));
+			if (test.get(0).equalsIgnoreCase("Let me search for you")
+					|| test.get(0).equalsIgnoreCase("Great!! You Provided a new word.")) {
 				System.out.println("Searching for question" + request.getParameter("question"));
 				try {
 					TreeMap<Integer, String> localTree = t.invertedIdxArray
 							.get(t.search(request.getParameter("question").toLowerCase()));
 					int count = 1;
+					for(int i=0; i <5; i++){
+						msg[i]="";
+					}
 					for (Map.Entry<Integer, String> entry : localTree.entrySet()) {
 						String value = entry.getValue();
 						response.getWriter().print(count + ": " + value + "<br>");

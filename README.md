@@ -1,4 +1,4 @@
-# GoBotHackathon (This application is awarded as the Best Creative Project in Hackathon)
+# GoBotHackathon (This application is awarded as the Best Creative Project in Windsor Hackathon 2017)
 App Build In Hackathon 2017
 
 TECHNOLOGY: JAVA, JSP, SERVLET, HTML, CSS, BOOTSTRAP, JQUERY, AJAX

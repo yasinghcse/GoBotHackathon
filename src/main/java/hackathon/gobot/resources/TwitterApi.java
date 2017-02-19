@@ -17,10 +17,10 @@ public class TwitterApi {
 	public void updateTwitterStatus(String text){
 		ConfigurationBuilder cf = new ConfigurationBuilder();
 		cf.setDebugEnabled(true)
-		.setOAuthConsumerKey("6TzAHwzq2Rcv9HVCjxJ9qGhlP")
-		.setOAuthConsumerSecret("SAr5ZYUFjwAn6GFUohYSg6nWjb7NsnWhIyrl9yPB0WdBIaAr7p")
-		.setOAuthAccessToken("97219371-pEAvfAG0hix7jIYirtUcG2gfyB509MHrCFOLHJrPr")
-		.setOAuthAccessTokenSecret("eGHxdkCprXXYTyTgOHYJMubMR8roPiTPU0Ahbgbnr2oW1");
+		.setOAuthConsumerKey("Your Key here")
+		.setOAuthConsumerSecret("Your Key here")
+		.setOAuthAccessToken("Your Key here")
+		.setOAuthAccessTokenSecret("Your Key here");
 		
 		TwitterFactory tf = new TwitterFactory(cf.build());
 		twitter4j.Twitter twitter = tf.getInstance();
